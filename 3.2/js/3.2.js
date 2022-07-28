@@ -29,23 +29,14 @@ const addPersonItem = (person) => {
 // request.catch();
 // request.finally();
 
-const displayLoading = () => {
-  $spinner.style.display = 'block';
-};
-
 const hideLoading = () => {
-  $spinner.style.display = 'none';
+  $spinner.classList.add('d-none');
 };
-
-window.addEventListener('load', () => {
-  displayLoading();
-});
 
 axios.get('https://swapi.dev/api/people/?page=3')
     .then((res) => {
-        hideLoading();
         res.data.results.forEach(person => {
-          // hideLoading();???
           addPersonItem(person);
         });
+        hideLoading();
     });
